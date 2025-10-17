@@ -30,7 +30,7 @@ export default function Footer() {
                         <a href="https://github.com/AlaaIbra-Him" target="_blank" rel="noopener noreferrer">
                             <FaGithub className="hover:text-white cursor-pointer transition-colors duration-300" />
                         </a>
-                        <a href="https:/www.linkedin.com/in/alaa-ibra-him" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.linkedin.com/in/alaa-ibra-him/" target="_blank" rel="noopener noreferrer">
                             <FaLinkedinIn className="hover:text-white cursor-pointer transition-colors duration-300" />
                         </a>
                         <a href="https://www.facebook.com/profile.php?id=100012606046722" target="_blank" rel="noopener noreferrer">

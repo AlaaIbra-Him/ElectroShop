@@ -2,8 +2,10 @@ import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
+console.log("MONGODB_URI from env:", MONGODB_URI); 
+
 if (!MONGODB_URI) {
-    throw new Error(" Please define the MONGODB_URI in .env.local");
+  throw new Error(" Please define the MONGODB_URI in .env.local");
 }
 
 let cached = global.mongoose;
@@ -17,12 +19,20 @@ export const connectDB = async () => {
 
   if (!cached.promise) {
     cached.promise = mongoose.connect(MONGODB_URI, {
-      dbName: "Cluster0",
       bufferCommands: false,
     }).then((m) => m);
   }
 
   cached.conn = await cached.promise;
-  console.log("MongoDB connected");
+  console.log(" MongoDB connected");
   return cached.conn;
 };
+//       dbName: "Cluster0",
+//       bufferCommands: false,
+//     }).then((m) => m);
+//   }
+
+//   cached.conn = await cached.promise;
+//   console.log("MongoDB connected");
+//   return cached.conn;
+// };

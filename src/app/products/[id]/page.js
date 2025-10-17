@@ -15,10 +15,10 @@ export default function ProductDetail({ params }) {
             });
     }, [id]);
 
-    if (!product) return <p className="text-white p-10">Loading...</p>;
+    if (!product) return <p className="text-white p-10 my-10 flex justify-center">Loading...</p>;
 
     return (
-        <div className="p-10 max-w-5xl mx-auto items-center flex flex-col md:flex-row gap-10 bg-gray-900 text-white rounded shadow">
+        <div className="p-10 max-w-5xl mx-auto items-center my-13 flex flex-col md:flex-row gap-10 bg-gray-900 text-white rounded shadow">
 
 
             <div className="flex-1">

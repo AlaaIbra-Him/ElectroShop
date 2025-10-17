@@ -2,9 +2,22 @@ import { connectDB } from "@/lib/mongodb";
 import Product from "@/models/Product";
 
 export async function GET() {
-    await connectDB();
-    const products = await Product.find();
-    return new Response(JSON.stringify(products), { status: 200 });
+    try {
+        await connectDB();
+        const products = await Product.find();
+        console.log("Fetched products from MongoDB:", products); 
+
+
+        return new Response(JSON.stringify(products || []), {
+            status: 200,
+            headers: { "Content-Type": "application/json" },
+        });
+    } catch (err) {
+        return new Response(JSON.stringify({ error: err.message }), {
+            status: 500,
+            headers: { "Content-Type": "application/json" },
+        });
+    }
 }
 
 export async function POST(req) {
