@@ -6,17 +6,23 @@ if (!MONGODB_URI) {
     throw new Error(" Please define the MONGODB_URI in .env.local");
 }
 
-let isConnected = false;
+let cached = global.mongoose;
+
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
+}
 
 export const connectDB = async () => {
-    if (isConnected) return;
-    try {
-        await mongoose.connect(MONGODB_URI, {
-            dbName: "my-store",
-        });
-        isConnected = true;
-        console.log("MongoDB connected");
-    } catch (err) {
-        console.error("DB connection error:", err);
-    }
+  if (cached.conn) return cached.conn;
+
+  if (!cached.promise) {
+    cached.promise = mongoose.connect(MONGODB_URI, {
+      dbName: "Cluster0",
+      bufferCommands: false,
+    }).then((m) => m);
+  }
+
+  cached.conn = await cached.promise;
+  console.log("MongoDB connected");
+  return cached.conn;
 };
