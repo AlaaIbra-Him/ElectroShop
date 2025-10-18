@@ -2,17 +2,24 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { auth, signInWithGoogle } from "@/lib/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const router = useRouter();
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        console.log("Login", { email, password });
-        router.push("/");
 
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            alert(`Welcome ${userCredential.user.displayName || "User"}!`);
+            router.push("/");
+        } catch (error) {
+            alert(error.message);
+        }
     };
 
     return (
@@ -44,7 +51,24 @@ export default function LoginPage() {
                         Login
                     </button>
                 </form>
+                {/* ==================google-------- */}
+                <button
+                    type="button"
+                    onClick={async () => {
+                        try {
+                            const user = await signInWithGoogle();
+                            alert(`Welcome ${user.displayName}`);
+                            router.push("/");
+                        } catch (error) {
+                            alert(error.message);
+                        }
+                    }}
+                    className="w-full px-5 py-3 bg-gray-700 hover:bg-gray-600 text-white rounded-lg  font-semibold "
+                >
+                    Sign in with Google
+                </button>
 
+                {/* ================================ */}
                 <p className="text-gray-400 text-center">
                     Don&apos;t have an account?{" "}
                     <Link href="/register" className="text-blue-400 hover:underline">
