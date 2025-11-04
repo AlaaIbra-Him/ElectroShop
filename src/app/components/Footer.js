@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { FaFacebookF, FaLinkedinIn, FaGithub } from "react-icons/fa";
+import { FaFacebookF, FaLinkedinIn, FaGithub, FaWhatsapp } from "react-icons/fa";
 
 export default function Footer() {
     return (
@@ -25,7 +25,7 @@ export default function Footer() {
 
                 {/* Social============= */}
                 <div className="flex flex-col space-y-5">
-                    <h3 className="font-semibold text-white text-lg">Follow Us</h3>
+                    <h3 className="font-semibold text-white text-lg">Follow Me</h3>
                     <div className="flex gap-4 text-gray-400">
                         <a href="https://github.com/AlaaIbra-Him" target="_blank" rel="noopener noreferrer">
                             <FaGithub className="hover:text-white cursor-pointer transition-colors duration-300" />
@@ -35,6 +35,11 @@ export default function Footer() {
                         </a>
                         <a href="https://www.facebook.com/profile.php?id=100012606046722" target="_blank" rel="noopener noreferrer">
                             <FaFacebookF className="hover:text-white cursor-pointer transition-colors duration-300" />
+                        </a>
+                        <a
+                            href="https://wa.me/201006372080"
+                            target="_blank" rel="noopener noreferrer">
+                            <FaWhatsapp className="hover:text-white cursor-pointer transition-colors duration-300 " />
                         </a>
                     </div>
                 </div>
