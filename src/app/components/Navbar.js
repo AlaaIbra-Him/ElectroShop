@@ -26,6 +26,7 @@ export default function Navbar() {
                 <Link href="/" className="text-2xl font-bold text-white">
                     ElectroShop
                 </Link>
+                {/*=====Links-------------=== */}
 
                 <button
                     onClick={toggleMenu}
@@ -60,6 +61,7 @@ export default function Navbar() {
                         About Us
                     </Link>
                 </div>
+                {/* Login==========*/}
 
                 <div className="hidden lg:block">
                     <Link
